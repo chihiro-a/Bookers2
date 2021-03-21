@@ -14,6 +14,7 @@
     <h1>Bookers</h1>
     <% if user_signed_in? %>
     <!--ログイン中-->
+    <h1>ログイン中</h1>
     <li>
       <%= link_to"Home", root_path %>
     </li>
@@ -28,25 +29,36 @@
     <li>
       <%= link_to"logout",destroy_user_session_path, method: :delete %>
     </li>
+
+    
+    
     <% else %>
 
     <!--ログアウト中↓-->
+    <h1>ログアウト中</h1>
     <li>
       <%= link_to"Home", root_path %>
     </li>
     <li>
       <%= link_to"About", home_about_path %>
+      <!--ユーザ一覧作成してからルートパス変更する-->
     </li>
     <li>
-      <%= link_to "sign up", new_user_registration_path %>
+      <%= link_to "sign_up", new_user_registration_path %>
+      <!--投稿一覧-->
     </li>
     <li>
-      <%= link_to "login", new_user_session_path%>
+      <%= link_to "login", new_user_session_path %>
     </li>
     <% end %>
     </header>
 
     
     <%= yield %>
+    
+    <footer>
+      <p>CopyRight Infratop.inc</p>
+      <!--usersコントローラに表示されない…-->
+    </footer>
   </body>
 </html>

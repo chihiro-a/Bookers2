@@ -1,2 +1,14 @@
-<h1>ユーザ情報編集画面</h1>
-<%= @user.name%>
+<!--<h1>ユーザ情報編集画面</h1>-->
+<h1>User info</h1>
+
+<%= form_with model:@user,local:true do |f| %>
+<!--送信先のURLいる？-->
+<h4>Name</h4>
+<%= f.text_field :name %>
+<h4>Image</h4>
+<%= f.attachment_field :profile_image %>
+<!--userモデルにattachmentを記述しないと↑ここがエラーになる-->
+<h4>Introduction</h4>
+<%= f.text_area :introduction %>
+<%= f.submit 'Update User' %>
+<% end %>
