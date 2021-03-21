@@ -1,22 +1,22 @@
 class BooksController < ApplicationController
   
-  def new
-     @book = Book.new
-  end
+
   def create
-    @book = book.new(book_params)
-    @book.user_id = current_user_id
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    # idがnillでエラーになる
     @book.save
-    redirect_to books_path
-    # 投稿詳細へリダイレクト
+    redirect_to book_path(@book.id)
   end
   
   def index
+    @book = Book.new
     @books = Book.all
   end
   
   def show
     @book = Book.find(params[:id])
+    
   end
   
   def edit
@@ -28,7 +28,7 @@ class BooksController < ApplicationController
   private
   
   def book_params
-    params.require(:book).premit(:title, :body)
+    params.require(:book).permit(:title, :body)
   end
   
 end

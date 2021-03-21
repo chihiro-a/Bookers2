@@ -1,1 +1,13 @@
+<!--ここをshowとindexで共有する-->
+<h1>New book</h1>
+<%= form_with model: @book, local:true do |f| %>
+<h4>Title</h4>
+<%= f.text_field :title %>
+<h4>Opinion</h4>
+<%= f.text_field :body %>
+<%= f.submit 'Create Book' %>
+<% end %>
+<!--ここまで-->
 <h1>全ユーザの投稿一覧画面</h1>
+<siv>左にユーザ情報</siv>
+<div>右に投稿一覧</div>
