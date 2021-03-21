@@ -1,1 +1,18 @@
 <h1>ユーザ一覧画面</h1>
+<!--book新規投稿フォーム部分テンプレート-->
+<h1>New book</h1>
+<%= form_with model: @book, local:true do |f| %>
+<h4>Title</h4>
+<%= f.text_field :title %>
+<h4>Opinion</h4>
+<%= f.text_field :body %>
+<%= f.submit 'Create Book' %>
+<% end %>
+<!---部分テンプレートここまで-->
+
+<h1>Users</h1>
+<% @users.each do |user| %>
+<div><%= user.name %></div>
+<div><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %></div>
+<div>show</div>
+<% end %>

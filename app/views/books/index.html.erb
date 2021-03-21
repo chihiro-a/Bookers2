@@ -1,4 +1,4 @@
-<!--ここをshowとindexで共有する-->
+<!--ここを全てのページで使用するので後で部分テンプレートする-->
 <h1>New book</h1>
 <%= form_with model: @book, local:true do |f| %>
 <h4>Title</h4>
@@ -11,3 +11,10 @@
 <h1>全ユーザの投稿一覧画面</h1>
 <siv>左にユーザ情報</siv>
 <div>右に投稿一覧</div>
+<div>title</div>
+<div>body</div>
+<% @books.each do |book| %>
+<div><%= book.title %></div>
+<div><%= book.body %></div>
+<% end %>
+
