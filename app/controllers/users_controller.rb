@@ -3,10 +3,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @book = Book.new
-    @books = @user.books.page(params[:page])
-    # 自分が投稿したbookのみ取得したい
-    # ここがわからない…
-    
+    @books = @user.books
+    # 自分が投稿したbookのみ取得
+    # このbooksって具体的にどこを指している…？
   end
   
   def create
