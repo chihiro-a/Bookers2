@@ -4,8 +4,15 @@
 
 <h1>ここが投稿詳細</h1>
 <h1>Book detail</h1>
+<%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %>
+<!--@book.userでこの記事の投稿者のデータを取得-->
+<%= @book.user.name %>
 <%= @book.title %>
 <%= @book.body %>
 
+
+<!--自分が投稿者であるときのみ表示する-->
+<% if @book.user == current_user %>
 <%= link_to "Edit", edit_book_path(@book.id)%>
-<!--編集ページへのリンクは合ってる-->
+<%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm"=>"本当に消しますか？"%>
+<% end %>

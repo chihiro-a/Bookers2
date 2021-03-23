@@ -14,7 +14,8 @@
 <div>title</div>
 <div>body</div>
 <% @books.each do |book| %>
-<div><%= book.title %></div>
+<div><%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %></div>
+<div><%= link_to book.title, book_path(book.id) %></div>
 <div><%= book.body %></div>
 <% end %>
 
