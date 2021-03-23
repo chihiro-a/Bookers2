@@ -3,5 +3,9 @@
 <!--ここまで-->
 
 <h1>ここが投稿詳細</h1>
+<h1>Book detail</h1>
 <%= @book.title %>
 <%= @book.body %>
+
+<%= link_to "Edit", edit_book_path(@book.id)%>
+<!--編集ページへのリンクは合ってる-->
