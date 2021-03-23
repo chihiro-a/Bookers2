@@ -14,5 +14,6 @@
 <% @users.each do |user| %>
 <div><%= user.name %></div>
 <div><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %></div>
-<div>show</div>
+<div><%= link_to "show", user_path(user.id) %></div>
+<!--そのユーザの詳細画面へ-->
 <% end %>

@@ -4,54 +4,75 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>   
-    <h1>Bookers</h1>
-    <% if user_signed_in? %>
-    <!--ログイン中-->
-    <h1>ログイン中</h1>
-    <li>
-      <%= link_to"Home", user_path(current_user.id) %>
-      <!--user_pathでユーザ詳細へ-->
-    </li>
-    <li>
-      <%= link_to"Users", users_path %>
-      <!--ユーザ-->
-    </li>
-    <li>
-      <%= link_to "Books", books_path %>
-      <!--投稿一覧-->
-    </li>
-    <li>
-      <%= link_to"logout",destroy_user_session_path, method: :delete %>
-    </li>
-
-    
-    
-    <% else %>
-
-    <!--ログアウト中↓-->
-    <h1>ログアウト中</h1>
-    <li>
-      <%= link_to"Home", root_path %>
-    </li>
-    <li>
-      <%= link_to"About", home_about_path %>
-    </li>
-    <li>
-      <%= link_to "sign_up", new_user_registration_path %>
-    </li>
-    <li>
-      <%= link_to "login", new_user_session_path %>
-    </li>
-    <% end %>
+  <body class="d-flex flex-column vh- 10">
+    <header class="bg-dark text-white"> 
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <!--この記述だけでヘッダー内の要素が横並びになる-->
+      <!--navbarナビゲーションバー要素にする-->
+      <!--navbar-expand-lgブレークポイントの指定-->
+      <!--navbar-lightナビゲーションカラーの設定-->
+      <div class="container">
+        <a class="navbar-brand p-3" href="/">Bookers</a>
+        <!--p-3パディング-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--buttonとspanはハンバーガーメニューの見た目に関わる記述-->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <!--ナビゲーションアイコンを開く前に隠しておきたいメニューは-->
+            <!--cokkpseクラスが付与された要素の中にいれる-->
+            <!--collapseクラスを付与している要素に任意のidをつける-->
+            <!--付与したidはnavbar-togglerクラスが付与される要素のdate-targetに指定する（頭に＃をつける）-->
+            <% if user_signed_in? %>
+            <p>ログイン中</p>
+            <li class="nav-item">
+              <%= link_to"Home", user_path(current_user.id) %>
+              <!--user_pathでユーザ詳細へ-->
+            </li>
+            <li class="nav-item">
+              <%= link_to"Users", users_path %>
+              <!--ユーザ-->
+            </li>
+            <li class="nav-item">
+              <%= link_to "Books", books_path %>
+              <!--投稿一覧-->
+            </li>
+            <li class="nav-item">
+              <%= link_to"logout",destroy_user_session_path, method: :delete %>
+            </li>
+            <% else %>
+            <p>ログアウト中</p>
+            <li class="list-item">
+              <%= link_to"Home", root_path %>
+            </li>
+            <li class="list-item">
+              <%= link_to"About", home_about_path %>
+            </li>
+            <li class="list-item">
+              <%= link_to "sign_up", new_user_registration_path %>
+            </li>
+            <li class="list-item">
+              <%= link_to "login", new_user_session_path %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+       </div>
+    </nav>
     </header>
 
+    <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+    <% end%>
     
     <%= yield %>
     

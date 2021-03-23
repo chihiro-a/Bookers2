@@ -6,3 +6,7 @@
 <%= f.text_field :body %>
 <%= f.submit 'Update Book' %>
 <% end %>
+<%= link_to "Show", book_path(@book.id) %>|
+<!--投稿詳細へ-->
+<%= link_to "Back", books_path %>
+<!--投稿一覧へ-->

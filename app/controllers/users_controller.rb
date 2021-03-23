@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user.id)
     # ユーザー詳細へリダイレクト
+    flash[:notice] = "You have updated user successfully."
   end
   
   def edit
