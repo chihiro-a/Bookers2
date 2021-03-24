@@ -11,14 +11,14 @@
   </head>
 
   <body class="d-flex flex-column vh- 10">
-    <header class="bg-dark text-white"> 
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <header class="bg-dark"> 
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <!--この記述だけでヘッダー内の要素が横並びになる-->
       <!--navbarナビゲーションバー要素にする-->
       <!--navbar-expand-lgブレークポイントの指定-->
-      <!--navbar-lightナビゲーションカラーの設定-->
+      <!--navbar-lightナビゲーションカラーの設定。暗い背景にdark明るい背景にlight-->
       <div class="container">
-        <a class="navbar-brand p-3" href="/">Bookers</a>
+        <a class="navbar-brand p-3 text-white" href="/">Bookers</a>
         <!--p-3パディング-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -33,33 +33,35 @@
             <% if user_signed_in? %>
             <p>ログイン中</p>
             <li class="nav-item">
-              <%= link_to"Home", user_path(current_user.id) %>
               <!--user_pathでユーザ詳細へ-->
+              <!--link_toのままだとbootstrapでSCCの適用ができないっぽい？-->
+              <!--link_toからaタグに変更-->
+              <a class="text-white" href="/users/<%= current_user.id %>">Home</a>
             </li>
             <li class="nav-item">
-              <%= link_to"Users", users_path %>
+              <a class="text-white" href="/users">Users</a>
               <!--ユーザ-->
             </li>
             <li class="nav-item">
-              <%= link_to "Books", books_path %>
+              <a class="text-white" href="/books">Books</a>
               <!--投稿一覧-->
             </li>
             <li class="nav-item">
-              <%= link_to"logout",destroy_user_session_path, method: :delete %>
+              <a class="text-white" href="/users/sign_out" data-method="delete">logout</a>
             </li>
             <% else %>
             <p>ログアウト中</p>
             <li class="list-item">
-              <%= link_to"Home", root_path %>
+              <a class="text-white" href="/">Home</a>
             </li>
             <li class="list-item">
-              <%= link_to"About", home_about_path %>
+              <a class="text-white" href="/home/about">About</a>
             </li>
             <li class="list-item">
-              <%= link_to "sign_up", new_user_registration_path %>
+              <a class="text-white" href="/users/sign_up">sign_up</a>
             </li>
             <li class="list-item">
-              <%= link_to "login", new_user_session_path %>
+              <a class="text-white" href="/users/sign_in">login</a>
             </li>
             <% end %>
           </ul>
@@ -74,10 +76,15 @@
     </div>
     <% end%>
     
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+    
     
     <footer>
-      <p>CopyRight Infratop.inc</p>
+      <div class="container">
+        <p>CopyRight Infratop.inc</p>
+      </div>
     </footer>
   </body>
 </html>
