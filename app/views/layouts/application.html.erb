@@ -18,7 +18,7 @@
       <!--navbar-expand-lgブレークポイントの指定-->
       <!--navbar-lightナビゲーションカラーの設定。暗い背景にdark明るい背景にlight-->
       <div class="container">
-        <a class="navbar-brand p-3 text-white" href="/">Bookers</a>
+        <a class="navbar-brand text-white" href="/">Bookers</a>
         <!--p-3パディング-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -31,37 +31,36 @@
             <!--collapseクラスを付与している要素に任意のidをつける-->
             <!--付与したidはnavbar-togglerクラスが付与される要素のdate-targetに指定する（頭に＃をつける）-->
             <% if user_signed_in? %>
-            <p>ログイン中</p>
             <li class="nav-item">
               <!--user_pathでユーザ詳細へ-->
               <!--link_toのままだとbootstrapでSCCの適用ができないっぽい？-->
               <!--link_toからaタグに変更-->
-              <a class="text-white" href="/users/<%= current_user.id %>">Home</a>
+              <a class="text-white" href="/users/<%= current_user.id %>"><span><i class="fas fa-home"></i></span>Home</a>
             </li>
             <li class="nav-item">
-              <a class="text-white" href="/users">Users</a>
+              <a class="text-white" href="/users"><span><i class="fas fa-users"></i></span>Users</a>
               <!--ユーザ-->
             </li>
             <li class="nav-item">
-              <a class="text-white" href="/books">Books</a>
+              <a class="text-white" href="/books"><span><i class="fas fa-book-open"></i></span>Books</a>
               <!--投稿一覧-->
             </li>
             <li class="nav-item">
-              <a class="text-white" href="/users/sign_out" data-method="delete">logout</a>
+              <a class="text-white" href="/users/sign_out" data-method="delete"><span><i class="fas fa-sign-out-alt"></i></span>logout</a>
             </li>
             <% else %>
             <p>ログアウト中</p>
             <li class="list-item">
-              <a class="text-white" href="/">Home</a>
+              <a class="text-white" href="/"><span><i class="fas fa-home"></i></span>Home</a>
             </li>
             <li class="list-item">
-              <a class="text-white" href="/home/about">About</a>
+              <a class="text-white" href="/home/about"><span><i class="fas fa-link"></i></span>About</a>
             </li>
             <li class="list-item">
-              <a class="text-white" href="/users/sign_up">sign_up</a>
+              <a class="text-white" href="/users/sign_up"><span><i class="fas fa-user-plus"></i></span>sign_up</a>
             </li>
             <li class="list-item">
-              <a class="text-white" href="/users/sign_in">login</a>
+              <a class="text-white" href="/users/sign_in"><span><i class="fas fa-sign-in-alt"></i></span>login</a>
             </li>
             <% end %>
           </ul>
