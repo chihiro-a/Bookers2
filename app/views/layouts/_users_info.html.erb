@@ -1,28 +1,34 @@
 <!--部分テンプレート-->
 
 <!--あとで部分テンプレートする↓ログインしている人専用-->
-<p>ここから部分テンプレート</p>
-<h2>User info</h2>
-<h4>name</h4>
-<%= user.name %>
-<h4>introduction</h4>
-<%= user.introduction %>
-<div>
-<%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %>
-</div>
-<!--NoImageは.jpegだけど.jpg-と記述するっぽい…-->
 
-<%= link_to"編集（フォントオウサムする）", edit_user_path(current_user.id) %>
-<!--編集はログインしているユーザの編集ページのみアクセス-->
+        <h2>User info</h2>
+        <div>
+        <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %>
+        </div>
+        <!--NoImageは.jpegだけど.jpg-と記述するっぽい…-->
+        <table width=100%>
+            <tr>
+                <th>name</th>
+                <th><%= user.name %></th>
+            </tr>
+            <tr>
+                <th>introduction</th>
+                <th><%= user.introduction %></th>
+            </tr>
+        </table>
 
-<!--新規投稿フォームテンプレート-->
-<h1>New book</h1>
-<%= form_with model: book, local:true do |f| %>
-<!--@bookをbookに変更-->
-<h4>Title</h4>
-<%= f.text_field :title %>
-<h4>Opinion</h4>
-<%= f.text_field :body %>
-<%= f.submit 'Create Book' %>
-<% end %>
-<p>ここまで部分テンプレート</p>
+
+        <a class="btn btn-lg btn-block btn-info" href="/users/<%= current_user.id %>/edit "><span><i class="fas fa-user-cog"></i></span></a>
+        <!--編集はログインしているユーザの編集ページのみアクセス-->
+
+        <!--新規投稿フォームテンプレート-->
+        <h1>New book</h1>
+        <%= form_with model: book, local:true do |f| %>
+        <!--@bookをbookに変更-->
+        <p>Title</p>
+        <%= f.text_field :title %>
+        <p>Opinion</p>
+        <%= f.text_field :body %>
+        <div><%= f.submit 'Create Book',class:"btn btn-lg btn-block btn-info mt-4" %></div>
+        <% end %>

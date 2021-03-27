@@ -1,19 +1,32 @@
-
-<!--部分テンプレート-->
-<%= render 'layouts/users_info', {book:@book , user:@user} %>
-
 <h1>ここが投稿詳細</h1>
-<h1>Book detail</h1>
-<%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %>
-<!--@book.userでこの記事の投稿者のデータを取得-->
-<%= link_to @book.user.name, user_path(@book.user.id) %>
-<!--ユーザ名をユーザ詳細ページへのリンクにする-->
-<%= @book.title %>
-<%= @book.body %>
 
 
-<!--自分が投稿者であるときのみ表示する-->
-<% if @book.user == current_user %>
-<%= link_to "Edit", edit_book_path(@book.id)%>
-<%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm"=>"本当に消しますか？"%>
-<% end %>
+<div class="container">
+    <div class="row">
+        <div class="cal-lg-3">
+            <!--部分テンプレート-->
+            <%= render 'layouts/users_info', {book:@create_book , user:@user} %>
+            <!--book:@bookだと、↓で取得する@bookの内容を受け渡してしまうので違う名前（create_book）にした-->
+        </div>
+        <div class="col-lg-8 offset-md-1">
+            <h1>Book detail</h1>
+            <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %>
+            <!--@book.userでこの記事の投稿者のデータを取得-->
+            <%= link_to @book.user.name, user_path(@book.user.id) %>
+            <!--ユーザ名をユーザ詳細ページへのリンクにする-->
+            <%= @book.title %>
+            <%= @book.body %>
+
+
+            <!--自分が投稿者であるときのみ表示する-->
+            <% if @book.user == current_user %>
+            <%= link_to "Edit", edit_book_path(@book.id)%>
+            <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm"=>"本当に消しますか？"%>
+            <% end %>
+        </div>
+    </div>
+
+
+
+
+</div>
