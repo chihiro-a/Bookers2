@@ -1,28 +1,43 @@
-<h1>ここが投稿詳細</h1>
+<!--<h1>ここが投稿詳細</h1>-->
 
 
-<div class="container">
+<div class="container p-3">
     <div class="row">
         <div class="cal-lg-3">
             <!--部分テンプレート-->
             <%= render 'layouts/users_info', {book:@create_book , user:@user} %>
             <!--book:@bookだと、↓で取得する@bookの内容を受け渡してしまうので違う名前（create_book）にした-->
         </div>
-        <div class="col-lg-8 offset-md-1">
-            <h1>Book detail</h1>
-            <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %>
-            <!--@book.userでこの記事の投稿者のデータを取得-->
-            <%= link_to @book.user.name, user_path(@book.user.id) %>
-            <!--ユーザ名をユーザ詳細ページへのリンクにする-->
-            <%= @book.title %>
-            <%= @book.body %>
+        <div class="col-lg-8 offset-lg-1">
+            <h2>Book detail</h2>
+            <table width=100%>
+                <tr>
+                    <td>
+                        <a href="/users/<%= @book.user.id %>">
+                        <%= attachment_image_tag @book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" ,size:"50x50" %></br>
+                        <!--@book.userでこの記事の投稿者のデータを取得-->
+                        <%= @book.user.name %>
+                        </a>
+                    </td>
+                    <td>
+                         <%= link_to @book.title, book_path(@book.id) %>
+                    </td>
+                    <td>
+                         <%= @book.body %>
+                    </td>
+                    <td>
+                        <!--自分が投稿者であるときのみ表示する-->
+                        <% if @book.user == current_user %>
+                        <a class="btn btn-success btn-inlineblock" href="/books/<%= @book.id %>/edit ">Edit</a>
+            
+                        <a data-confirm="本当に消しますか？" class="btn btn-danger destroy_book_<%= @book.id %> rel="nofollow" date-method="delete" href="/books/<%= @book.id %> ">Destroy</a>
+                        <% end %>
+                    </td>
+                </tr>
+            </table>
+     
 
-
-            <!--自分が投稿者であるときのみ表示する-->
-            <% if @book.user == current_user %>
-            <%= link_to "Edit", edit_book_path(@book.id)%>
-            <%= link_to "Destroy", book_path(@book.id), method: :delete, "data-confirm"=>"本当に消しますか？"%>
-            <% end %>
+            
         </div>
     </div>
 

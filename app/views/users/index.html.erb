@@ -1,12 +1,29 @@
-<h1>ユーザ一覧画面</h1>
+<!--ユーザ一覧画面-->
 
-<!--部分テンプレート-->
-<%= render 'layouts/users_info', {book:@book , user:@user} %>
+<div class="container">
+    <div class="row">
+        <div class="cal-lg-3">
+            <!--部分テンプレート-->
+            <%= render 'layouts/users_info', {book:@book , user:@user} %>
+        </div>
+        <div class="col-lg-8 offset-md-1">
+          <h1>Users</h1>
+          <table width=100%>
+            <tr>
+                <th>image</th>
+                <th>name</th>
+                <th></th>
+            </tr>
+            <tr>
+                <% @users.each do |user| %>
+                <th><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg", size: "50x50" %></th>
+                <th><%= user.name %></th>
+                <th><%= link_to "show", user_path(user.id) %></th>
+            </tr>
+            <% end %>
+        </table>
 
-<h1>Users</h1>
-<% @users.each do |user| %>
-<div><%= user.name %></div>
-<div><%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" %></div>
-<div><%= link_to "show", user_path(user.id) %></div>
-<!--そのユーザの詳細画面へ-->
-<% end %>
+        </div>
+    </div>
+</div>
+

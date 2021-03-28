@@ -31,6 +31,7 @@
             <!--collapseクラスを付与している要素に任意のidをつける-->
             <!--付与したidはnavbar-togglerクラスが付与される要素のdate-targetに指定する（頭に＃をつける）-->
             <% if user_signed_in? %>
+            <!--ログイン中-->
             <li class="nav-item">
               <!--user_pathでユーザ詳細へ-->
               <!--link_toのままだとbootstrapでSCCの適用ができないっぽい？-->
@@ -49,17 +50,17 @@
               <a class="text-white" href="/users/sign_out" data-method="delete"><span><i class="fas fa-sign-out-alt"></i></span>logout</a>
             </li>
             <% else %>
-            <p>ログアウト中</p>
-            <li class="list-item">
+            <!--ログアウト中-->
+            <li class="nav-item">
               <a class="text-white" href="/"><span><i class="fas fa-home"></i></span>Home</a>
             </li>
-            <li class="list-item">
+            <li class="nav-item">
               <a class="text-white" href="/home/about"><span><i class="fas fa-link"></i></span>About</a>
             </li>
-            <li class="list-item">
+            <li class="nav-item">
               <a class="text-white" href="/users/sign_up"><span><i class="fas fa-user-plus"></i></span>sign_up</a>
             </li>
-            <li class="list-item">
+            <li class="nav-item">
               <a class="text-white" href="/users/sign_in"><span><i class="fas fa-sign-in-alt"></i></span>login</a>
             </li>
             <% end %>

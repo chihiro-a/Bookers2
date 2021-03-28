@@ -8,7 +8,7 @@
         </div>
         <!--NoImageは.jpegだけど.jpg-と記述するっぽい…-->
         <table width=100%>
-            <tr>
+            <tr class="m-1">
                 <th>name</th>
                 <th><%= user.name %></th>
             </tr>
@@ -17,18 +17,19 @@
                 <th><%= user.introduction %></th>
             </tr>
         </table>
-
-
-        <a class="btn btn-lg btn-block btn-info" href="/users/<%= current_user.id %>/edit "><span><i class="fas fa-user-cog"></i></span></a>
-        <!--編集はログインしているユーザの編集ページのみアクセス-->
-
+        
+        <div class="row">
+            <a class="btn btn-outline-secondary btn-block mt-3" href="/users "><span><i class="fas fa-user-cog"></i></span></a>
+            <!--編集はログインしているユーザの編集ページのみアクセス-->
+        </div>
+        
         <!--新規投稿フォームテンプレート-->
-        <h1>New book</h1>
+        <h2 class="mt-3">New book</h2>
         <%= form_with model: book, local:true do |f| %>
         <!--@bookをbookに変更-->
         <p>Title</p>
-        <%= f.text_field :title %>
+        <div><%= f.text_field :title %></div>
         <p>Opinion</p>
-        <%= f.text_field :body %>
-        <div><%= f.submit 'Create Book',class:"btn btn-lg btn-block btn-info mt-4" %></div>
+        <div><%= f.text_area :body %></div>
+        <div><%= f.submit 'Create Book',class:"btn btn-success mt-4" %></div>
         <% end %>
