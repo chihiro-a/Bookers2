@@ -29,7 +29,8 @@
                         <a class="btn btn-success btn-inlineblock" href="/books/<%= @book.id %>/edit ">Edit</a>
                     </td>
                     <td width=25%>
-                        <a class="btn btn-danger destroy_book_<%= @book.id %> rel="nofollow" date-method="delete" data-confirm="本当に消しますか？" href="/books/<%= @book.id%>" ">Destroy</a>
+                      <%= link_to "Destroy", book_path(@book), method: :delete ,"data-confirm"=>"本当に消しますか？" ,class:"btn btn-danger" %>
+                      <!--削除ボタン-->
                     </td>
                 </tr>
             </table>

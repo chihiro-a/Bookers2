@@ -1,5 +1,18 @@
 class UsersController < ApplicationController
   
+  before_action :authenticate_user!
+  # ログイン中ユーザのみ使用できるようにする
+  before_action :correct_user,only: [:edit]
+  # 直打ちしてほしくないメソッドを指定する
+  
+  def correct_user
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      redirect_to edit_user_path(current_user.id)
+      # 直打ちされた場合のリダイレクト先を指定
+    end
+  end
+  
   def show
     @user = User.find(params[:id])
     @book = Book.new
