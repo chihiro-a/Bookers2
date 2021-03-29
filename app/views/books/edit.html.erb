@@ -5,14 +5,14 @@
     <div class="max-auto col-sm-12 col-md-8 col-lg-5  ml-auto mr-auto pt-3">
       <h1>Editing Book</h1>
       <%= form_with model: @book, local:true do |f| %>
-      <div class="form_group　form-group-lg">
+      <div class="form-group">
         <label for="book_title">Title</label>
         <div class="pb-3">
           <%= f.text_field :title, class:"form-control" %>
           <!--class:"form-control"を指定しないと送信したデータが反映されない-->
         </div>
       </div>
-      <div class="form_group">
+      <div class="form-group">
         <label for="book_body">Opinion</label>
         <div>
           <%= f.text_area :body, class:"form-control" %>

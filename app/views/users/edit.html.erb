@@ -1,14 +1,37 @@
-<!--<h1>ユーザ情報編集画面</h1>-->
-<h1>User info</h1>
+<!--ユーザ情報編集画面-->
 
-<%= form_with model:@user,local:true do |f| %>
-<!--送信先のURLいる？-->
-<h4>Name</h4>
-<%= f.text_field :name %>
-<h4>Image</h4>
-<%= f.attachment_field :profile_image %>
-<!--userモデルにattachmentを記述しないと↑ここがエラーになる-->
-<h4>Introduction</h4>
-<%= f.text_area :introduction %>
-<%= f.submit 'Update User' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="max-auto col-sm-12 col-md-8 col-lg-5  ml-auto mr-auto pt-3">
+      <h2>User info</h2>
+      <%= form_with model: @user,local:true do |f| %>
+      <!--送信先のURLいる？-->
+      <div class="form-group">
+        <label for="user_name">Name</label>
+        <div>
+          <%= f.text_field :name, class:"form-control" %>
+          <!--class:"form-control"を指定しないと送信したデータが反映されない-->
+        </div>
+      </div>
+      
+      <div>
+        <p>Image</p>
+        <%= f.attachment_field :profile_image %>
+        <!--userモデルにattachmentを記述しないと↑ここがエラーになる-->
+      </div>
+      <div class="form-group">
+        <label for="user_introduction">Introduction</label>
+        <div>
+          <%= f.text_area :introduction, class:"form-control" %>
+          <!--class:"form-control"を指定しないと送信したデータが反映されない-->
+        </div>
+      </div>
+      <div>
+      <%= f.submit "Update User", class:"btn btn-sm btn-secondary p-2" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
