@@ -3,10 +3,10 @@
 
 <div class="container">
   <div class="row mt-3">
-    <div class="col-lg-3">
+    <div class="col-md-3">
       <%= render 'layouts/users_info', {book:@create_book , user:@user} %>
     </div>
-    <div class="col-lg-8 offset-md-1">
+    <div class="col-md-8 offset-md-1">
             <h2>Book detail</h2>
             <!--自分が投稿者であるときのみ表示する-->
             <% if @book.user == current_user %>
@@ -26,7 +26,7 @@
                          <%= @book.body %>
                     </td>
                     <td>
-                        <a class="btn btn-success btn-inlineblock" href="/books/<%= @book.id %>/edit ">Edit</a>
+                      <%= link_to "Edit" ,edit_book_path ,class:"btn btn-success btn-inlineblock" %>
                     </td>
                     <td width=25%>
                       <%= link_to "Destroy", book_path(@book), method: :delete ,"data-confirm"=>"本当に消しますか？" ,class:"btn btn-danger" %>
