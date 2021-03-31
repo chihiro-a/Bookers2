@@ -48,10 +48,14 @@ class BooksController < ApplicationController
   
   def update
     @book = Book.find(params[:id])
-    @book.update(book_params)
-    redirect_to book_path(@book.id)
-    # 投稿詳細へリダイレクト
-    flash[:notice] = "You have updated book successfully."
+    if @book.update(book_params)
+      redirect_to book_path(@book.id)
+      # 投稿詳細へリダイレクト
+      flash[:notice] = "You have updated book successfully."
+    else
+      render ('/books/edit')
+      # タイトル内容空欄でエラーが出るように条件分岐
+    end
   end
     
   
