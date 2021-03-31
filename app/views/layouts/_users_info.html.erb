@@ -19,10 +19,11 @@
         </table>
         
         <div class="row">
-            <%= link_to edit_user_path(user.id) ,class:"btn btn-outline-secondary btn-block mt-5", method: :get do %>
+            <%= link_to edit_user_path(user.id), method: :get do %>
             <i class="fas fa-user-cog"></i>
-            <% end %>
-            <!--編集はログインしているユーザの編集ページのみアクセス可能-->
+             <% end %>
+           
+            <!--編集はログインしているユーザの編集ページのみアクセス-->
         </div>
         
         <!--新規投稿フォームテンプレート-->
