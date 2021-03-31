@@ -4,12 +4,86 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh- 10">
+    <header class="bg-dark"> 
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <!--この記述だけでヘッダー内の要素が横並びになる-->
+      <!--navbarナビゲーションバー要素にする-->
+      <!--navbar-expand-lgブレークポイントの指定-->
+      <!--navbar-lightナビゲーションカラーの設定。暗い背景にdark明るい背景にlight-->
+      <div class="container">
+        <a class="navbar-brand text-white" href="/">Bookers</a>
+        <!--p-3パディング-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--buttonとspanはハンバーガーメニューの見た目に関わる記述-->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <!--ナビゲーションアイコンを開く前に隠しておきたいメニューは-->
+            <!--cokkpseクラスが付与された要素の中にいれる-->
+            <!--collapseクラスを付与している要素に任意のidをつける-->
+            <!--付与したidはnavbar-togglerクラスが付与される要素のdate-targetに指定する（頭に＃をつける）-->
+            <% if user_signed_in? %>
+            <!--ログイン中-->
+            <li class="nav-item">
+              <!--user_pathでユーザ詳細へ-->
+              <!--link_toのままだとbootstrapでSCCの適用ができないっぽい？-->
+              <!--link_toからaタグに変更-->
+              <a class="text-white" href="/users/<%= current_user.id %>"><span><i class="fas fa-home"></i></span>Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="text-white" href="/users"><span><i class="fas fa-users"></i></span>Users</a>
+              <!--ユーザ-->
+            </li>
+            <li class="nav-item">
+              <a class="text-white" href="/books"><span><i class="fas fa-book-open"></i></span>Books</a>
+              <!--投稿一覧-->
+            </li>
+            <li class="nav-item">
+              <a class="text-white" href="/users/sign_out" data-method="delete"><span><i class="fas fa-sign-out-alt"></i></span>logout</a>
+            </li>
+            <% else %>
+            <!--ログアウト中-->
+            <li class="nav-item">
+              <a class="text-white" href="/"><span><i class="fas fa-home"></i></span>Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="text-white" href="/home/about"><span><i class="fas fa-link"></i></span>About</a>
+            </li>
+            <li class="nav-item">
+              <a class="text-white" href="/users/sign_up"><span><i class="fas fa-user-plus"></i></span>sign up</a>
+            </li>
+            <li class="nav-item">
+              <a class="text-white" href="/users/sign_in"><span><i class="fas fa-sign-in-alt"></i></span>login</a>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+       </div>
+    </nav>
+    </header>
+
+    <% if flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+    <% end%>
+    
+
     <%= yield %>
+   
+    
+    <footer>
+      <div class="container">
+        <p class="text-center mt-5">CopyRight Infratop.inc</p>
+      </div>
+    </footer>
   </body>
 </html>
