@@ -1,24 +1,4 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+DMM　WebCampの課題で作成した会員制本の感想投稿Webサイトです。
+会員登録すると、本の感想の投稿、他のユーザが投稿した情報の閲覧ができるようになります。
